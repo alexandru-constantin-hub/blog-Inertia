@@ -40,6 +40,9 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'categories' => function () {
+                return \App\Models\Category::all();
+            },
         ]);
     }
 }

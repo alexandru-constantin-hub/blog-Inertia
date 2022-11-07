@@ -15,9 +15,11 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/', [PostController::class, 'homepage'])->name('home');
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/post/{post}', [PostController::class, 'show']);
+Route::get('/category/{category}', [PostController::class, 'indexCategory']);
+Route::get('/authors/{author}', [PostController::class, 'indexAuthor']);
 //Route::get('/post/{post}', function () {
 //    return Inertia::render('Posts/Show');
 //});
@@ -37,6 +39,8 @@ Route::get('/settings', function () {
 //     ]);
 // });
 
+Route::get('/dashboard/postsList', [PostController::class, 'indexPostsList'])->name('postsList');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -46,3 +50,5 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+
