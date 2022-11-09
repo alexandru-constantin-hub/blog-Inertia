@@ -17,6 +17,7 @@ use Inertia\Inertia;
 */
 Route::get('/', [PostController::class, 'homepage'])->name('home');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
+
 Route::get('/post/{post}', [PostController::class, 'show']);
 Route::get('/category/{category}', [PostController::class, 'indexCategory']);
 Route::get('/authors/{author}', [PostController::class, 'indexAuthor']);
@@ -39,7 +40,7 @@ Route::get('/settings', function () {
 //     ]);
 // });
 
-Route::get('/dashboard/postsList', [PostController::class, 'indexPostsList'])->name('postsList');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -49,6 +50,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/dashboard/postsList', [PostController::class, 'indexPostsList'])->name('postsList');
+    Route::get('/dashboard/postCreate', [PostController::class, 'create'])->name('postCreate');
+    Route::post('/posts', [PostController::class, 'store']);
+    Route::get('/dashboard/postEdit/{post}', [PostController::class, 'edit']);
+    Route::put('/dashboard/postUpdate/{post}', [PostController::class, 'update']);
+    Route::delete('dashboard/post/deletePost/{post}', [PostController::class, 'destroy']);
 });
 
 

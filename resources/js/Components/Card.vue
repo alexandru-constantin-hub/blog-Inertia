@@ -39,7 +39,7 @@ const submitAuthor = (id) => {
               rounded-t-lg
               md:rounded-none md:rounded-l-lg
             "
-            :src="'/storage/'+post.image"
+            :src=" !post.image ? '/storage/images/24.jpg' : '/storage/'+post.image"
             alt="Post Image"
         />
         <div class="p-6 flex flex-col justify-between">

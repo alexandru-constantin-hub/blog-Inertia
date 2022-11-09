@@ -22,14 +22,12 @@ defineProps({
                 <h2 class="text-4xl font-semibold text-gray-800 leading-tight">
                {{post[0].title}}
                 </h2>
-                <a 
-                href="#"
-                class="py-2 text-green-700 inline-flex items-center justify-center mb-2"
-                >
-                {{post[0].category_title}}
-                </a>
+                <Link :href="'/category/'+post[0].category_id"  class="py-2 text-green-700 inline-flex items-center justify-center mb-2">{{post[0].category_title}}</Link>
             </div>
-            <img :src="'/images/'+post[0].image" class="w-full object-cover lg:rounded" style="height: 28em;"/>
+            <div v-if="post[0].image">
+                <img :src="'/storage/'+post[0].image" class="w-full object-cover lg:rounded" style="height: 28em;"/>
+            </div>
+            
         </div>
 
     <div class="flex flex-col lg:flex-row lg:space-x-12">
@@ -53,7 +51,10 @@ defineProps({
         <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
             <div class="p-4 border-t border-b md:border md:rounded">
                 <div class="flex py-2">
-                    <img :src="'/storage/'+post[0].user_avatar" class="w-10 h-10 rounded-full mr-4" alt="avatar"/>
+                    <div v-if="post[0].user_avatar">
+                        <img :src="'/storage/'+post[0].user_avatar" class="w-10 h-10 rounded-full mr-4" alt="avatar"/>
+                    </div>
+                    
                     <div>
                     <p class="font-semibold text-gray-700 text-sm"> {{post[0].user_name}} </p>
                     <p class="font-semibold text-gray-600 text-xs"> Editor </p>
